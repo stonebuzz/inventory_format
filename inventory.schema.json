@@ -2760,6 +2760,15 @@
       "default": "Computer",
       "pattern": "^(Computer|Phone|NetworkEquipment|Printer)$"
     },
+    "items_id": {
+       "type": "integer",
+       "title": "Item ID, required for partial inventory"
+    },
+    "partial": {
+      "type": "boolean",
+      "title": "Is inventory partial?",
+      "default": false
+    },
     "query": {
       "type": "string",
       "default": "INVENTORY",

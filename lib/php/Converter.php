@@ -223,7 +223,9 @@ class Converter
      */
     public function getMethods()
     {
-        $methods = [];
+       $methods = [
+           'checkPartial'
+       ];
 
         foreach ($this->mapping as $name => $version) {
             if ($version <= $this->target_version) {
@@ -232,6 +234,22 @@ class Converter
         }
 
         return $methods;
+    }
+
+    /**
+     * Converts to inventory format 0.1
+     *
+     * @param array $data Contents
+     *
+     * @return array
+     */
+    private function checkPartial(array $data)
+    {
+       if (isset($data['partial']) && $data['partial']) {
+          if (!isset($data['items_id']) || empty($data['items_id'])) {
+              throw new \RuntimeException('Item ID must be specified on partial inventories');
+          }
+       }
     }
 
     /**
